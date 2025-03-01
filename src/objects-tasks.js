@@ -121,10 +121,9 @@ function isEmptyObject(obj) {
  *    immutableObj.newProp = 'new';
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
-function makeImmutable(/* obj */) {
-  /* const freezeObj = Object.freeze(obj);
-  return freezeObj; */
-  throw new Error('Not implemented');
+function makeImmutable(obj) {
+  const freezeObj = Object.freeze(obj);
+  return freezeObj;
 }
 
 /**
