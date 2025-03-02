@@ -215,8 +215,19 @@ function sellTickets(queue) {
  *    console.log(r.height);      // => 20
  *    console.log(r.getArea());   // => 200
  */
-function Rectangle(/* width, height */) {
-  throw new Error('Not implemented');
+function Rectangle(width, height) {
+  class RectangleClass {
+    constructor(w, h) {
+      this.width = w;
+      this.height = h;
+    }
+
+    getArea() {
+      return this.width * this.height;
+    }
+  }
+  const r = new RectangleClass(width, height);
+  return r;
 }
 
 /**
