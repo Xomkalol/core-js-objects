@@ -294,15 +294,11 @@ function fromJSON(proto, json) {
  */
 function sortCitiesArray(arr) {
   return arr.sort((a, b) => {
-    // First, compare by country
     if (a.country < b.country) return -1;
     if (a.country > b.country) return 1;
 
-    // If countries are equal, compare by city
     if (a.city < b.city) return -1;
     if (a.city > b.city) return 1;
-
-    // If both country and city are equal, return 0 (no change in order)
     return 0;
   });
 }
@@ -342,8 +338,20 @@ function sortCitiesArray(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  const returnMap = new Map();
+
+  array.forEach((item) => {
+    const key = keySelector(item);
+    const value = valueSelector(item);
+    if (!returnMap.has(key)) {
+      returnMap.set(key, [value]);
+    } else {
+      const valueOfMap = returnMap.get(key);
+      valueOfMap.push(value);
+    }
+  });
+  return returnMap;
 }
 
 /**
